@@ -1,22 +1,11 @@
 // see https://github.com/lodash/lodash/issues/4108
 
-// NOTE this is monkey-patch version of lodash/remove.js,
-// thus the internal references and eslint-disable
+export let filterOut = function(collection, predicate) {
+  // eslint-disable-next-line consistent-this, no-invalid-this
+  let _ = this;
 
-/* eslint-disable */
-
-var arrayFilter = require('lodash/_arrayFilter'),
-    baseFilter = require('lodash/_baseFilter'),
-    baseIteratee = require('lodash/_baseIteratee'),
-    isArray = require('lodash/isArray');
-
-function filterOut(collection, predicate) {
-  var func = isArray(collection) ? arrayFilter : baseFilter;
-  // return func(collection, baseIteratee(predicate, 3));
-  predicate = function(value) {
-    return !baseIteratee(predicate, 3)(value);
-  };
-  return func(collection, predicate);
+  predicate = _.negate(_.iteratee(predicate));
+  return _.filter(collection, predicate);
 };
 
-module.exports = filterOut;
+export default filterOut;
