@@ -45,6 +45,63 @@ declare module "lodash" {
     consoleLogTime(label: string, fn: () => any): Promise<void>;
 
     /**
+     * Iterates over elements of collection, returning an array of all elements predicate returns falsy for. The
+     * predicate is invoked with three arguments: (value, index|key, collection).
+     *
+     * @param collection The collection to iterate over.
+     * @param predicate The function invoked per iteration.
+     * @return Returns the new filtered array.
+     */
+    filterOut(
+      collection: string | null | undefined,
+      predicate?: StringIterator<boolean>
+    ): string[];
+
+    /**
+     * @see _.filterOut
+     */
+    filterOut<T, S extends T>(
+      collection: List<T> | null | undefined,
+      predicate: ListIteratorTypeGuard<T, S>
+    ): S[];
+
+    /**
+     * @see _.filterOut
+     */
+    filterOut<T>(
+      collection: List<T> | null | undefined,
+      predicate?: ListIterateeCustom<T, boolean>
+    ): T[];
+
+    /**
+     * @see _.filterOut
+     */
+    filterOut<T extends object, S extends T[keyof T]>(
+      collection: T | null | undefined,
+      predicate: ObjectIteratorTypeGuard<T, S>
+    ): S[];
+
+    /**
+     * @see _.filterOut
+     */
+    filterOut<T extends object>(
+      collection: T | null | undefined,
+      predicate?: ObjectIterateeCustom<T, boolean>
+    ): Array<T[keyof T]>;
+
+    /**
+     * Keeps all elements from array that predicate returns truthy for and returns an array of the removed
+     * elements. The predicate is invoked with three arguments: (value, index, array).
+     *
+     * Note: Unlike _.filter, this method mutates array.
+     *
+     * @param array The array to modify.
+     * @param predicate The function invoked per iteration.
+     * @return Returns the new array of removed elements.
+     */
+    keep<T>(array: List<T>, predicate?: ListIteratee<T>): T[];
+
+    /**
      * Part of `lodash-firecloud`.
      *
      * Map an object and all of its plain-object properties' values depth-wise with a given `fn`.
