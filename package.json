@@ -21,7 +21,7 @@
     "@types/lodash": "4.14.160",
     "@types/resize-observer-browser": "^0.1.2",
     "hard-rejection": "^2.1.0",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.20",
     "outdent": "^0.7.0",
     "utility-types": "^3.10.0"
   },
